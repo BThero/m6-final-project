@@ -3,6 +3,8 @@ package com.example.demo.models;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 @Entity
@@ -62,5 +64,17 @@ public class Conversion implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(firstCurrency, secondCurrency);
+    }
+
+    /**
+     * Converts the Conversion object to a map that is easily parsable into JSON
+     * @return Map<String, Object>
+     */
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("firstCurrency", firstCurrency.getName());
+        map.put("secondCurrency", secondCurrency.getName());
+        map.put("rate", getRate());
+        return map;
     }
 }

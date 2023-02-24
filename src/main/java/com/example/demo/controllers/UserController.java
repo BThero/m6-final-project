@@ -6,10 +6,8 @@ import com.example.demo.models.Currency;
 import com.example.demo.models.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Map;
 
 @RestController
 public class UserController {
@@ -21,15 +19,13 @@ public class UserController {
 
     /**
      * Given the currency pair and an amount to convert, returns the converted amount
-     * @param body request body. Should contain firstCurrency, secondCurrency and amount
+     * @param firstCurrencyName The first currency's name
+     * @param secondCurrencyName The second currency's name
+     * @param amount The amount to be converted
      * @return Success/failure message
      */
     @GetMapping("/conversion")
-    public String createCurrencyPair(@RequestBody Map<String, String> body) {
-        String firstCurrencyName = body.getOrDefault("firstCurrency", "");
-        String secondCurrencyName = body.getOrDefault("secondCurrency", "");
-        float amount = Float.parseFloat(body.getOrDefault("amount", "0.0"));
-
+    public String createCurrencyPair(@RequestParam(name = "firstCurrency") String firstCurrencyName, @RequestParam(name = "secondCurrency") String secondCurrencyName, @RequestParam float amount) {
         Currency firstCurrency = currencyRepository.findByNameIgnoringCase(firstCurrencyName);
         Currency secondCurrency = currencyRepository.findByNameIgnoringCase(secondCurrencyName);
 
