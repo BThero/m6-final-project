@@ -26,6 +26,10 @@ public class Currency implements Serializable {
 
     }
 
+    /**
+     * Initializes a new currency with a specified name.
+     * @param name The currency's name
+     */
     public Currency(String name) {
         this.name = name;
     }
@@ -36,27 +40,6 @@ public class Currency implements Serializable {
 
     public Long getId() {
         return id;
-    }
-
-    public List<Conversion> getConversions() {
-        return conversions;
-    }
-
-    public void addConversion(Currency currency, float rate) {
-        Conversion conversion = new Conversion(this, currency, rate);
-        conversions.add(conversion);
-        currency.getConversions().add(conversion);
-    }
-
-    public void removeConversion(Currency currency) {
-        Conversion conversion = conversions.stream().filter(c -> c.getSecondCurrency() == currency).findFirst().orElse(null);
-
-        if (conversion != null) {
-            conversions.remove(conversion);
-            currency.getConversions().remove(conversion);
-            conversion.setFirstCurrency(null);
-            conversion.setSecondCurrency(null);
-        }
     }
 
     @Override

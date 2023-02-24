@@ -17,6 +17,11 @@ public class ManagementController {
     @Autowired
     CurrencyRepository currencyRepository;
 
+    /**
+     * Creates a new currency pair with a specified conversion rate
+     * @param body request body. Should contain firstCurrency, secondCurrency and rate fields
+     * @return Success/failure message
+     */
     @PostMapping("/currencies")
     public String createCurrencyPair(@RequestBody Map<String, String> body) {
         String firstCurrencyName = body.getOrDefault("firstCurrency", "");
@@ -41,6 +46,11 @@ public class ManagementController {
         return "Successfully created";
     }
 
+    /**
+     * Updates an existing currency pair with a specified conversion rate
+     * @param body request body. Should contain firstCurrency, secondCurrency and rate fields
+     * @return Success/failure message
+     */
     @PutMapping("/currencies")
     public String updateCurrencyPair(@RequestBody Map<String, String> body) {
         String firstCurrencyName = body.getOrDefault("firstCurrency", "");
@@ -65,6 +75,11 @@ public class ManagementController {
         return "Successfully updated";
     }
 
+    /**
+     * Deletes an existing currency pair
+     * @param body request body. Should contain firstCurrency, secondCurrency
+     * @return Success/failure message
+     */
     @DeleteMapping("/currencies")
     public String deleteCurrencyPair(@RequestBody Map<String, String> body) {
         String firstCurrencyName = body.getOrDefault("firstCurrency", "");

@@ -26,6 +26,12 @@ public class Conversion implements Serializable {
 
     }
 
+    /**
+     * Initializes a currency conversion with specified currency pair and a conversion rate
+     * @param firstCurrency currency to convert from
+     * @param secondCurrency currency to convert to
+     * @param rate conversion rate
+     */
     public Conversion(Currency firstCurrency, Currency secondCurrency, float rate) {
         this.firstCurrency = firstCurrency;
         this.secondCurrency = secondCurrency;
@@ -33,24 +39,8 @@ public class Conversion implements Serializable {
         this.rate = rate;
     }
 
-    public void setFirstCurrency(Currency firstCurrency) {
-        this.firstCurrency = firstCurrency;
-    }
-
-    public void setSecondCurrency(Currency secondCurrency) {
-        this.secondCurrency = secondCurrency;
-    }
-
     public void setRate(float rate) {
         this.rate = rate;
-    }
-
-    public Currency getFirstCurrency() {
-        return firstCurrency;
-    }
-
-    public Currency getSecondCurrency() {
-        return secondCurrency;
     }
 
     public float getRate() {

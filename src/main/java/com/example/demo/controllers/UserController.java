@@ -19,6 +19,11 @@ public class UserController {
     @Autowired
     CurrencyRepository currencyRepository;
 
+    /**
+     * Given the currency pair and an amount to convert, returns the converted amount
+     * @param body request body. Should contain firstCurrency, secondCurrency and amount
+     * @return Success/failure message
+     */
     @GetMapping("/conversion")
     public String createCurrencyPair(@RequestBody Map<String, String> body) {
         String firstCurrencyName = body.getOrDefault("firstCurrency", "");
